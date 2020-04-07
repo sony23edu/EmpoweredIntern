@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/displayAnnouncements.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tellHR.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/quicklinks.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.7.min.js"></script>
+    <head>
+        <title>Home Page</title>
+    </head>
+    <body>
+        <div th:replace="header :: header"></div>
+        <div class="homePage">
+            <div th:replace=  "displayAnnouncements :: displayAnnouncements"></div>
+            <div th:replace="alertsHomePage :: alertsHomePage"></div>
+            <div class="quickLinks" th:insert="quickLinks :: quickLinks"></div>
+            <th:block th:if="${displayTellHR}">
+                <div  th:replace="tellHR :: tellHR"></div> <!-- tellHR fragment -->
+            </th:block>
+        </div>
+        <div th:replace="footer :: footer"></div>
+    </body>
+</html>

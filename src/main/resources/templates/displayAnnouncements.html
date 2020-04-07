@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment= "displayAnnouncements">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/displayAnnouncements.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.7.min.js"></script>
+    <head>
+    </head>
+    <!-- When the list of announcement is empty it will show the zero state -->
+    <body>
+        <!-- Iterate announcement list and add nav dots -->
+        <div class="displayAnnouncement-container" th:if="${announcementsList!=null and !announcementsList.empty}" >
+            <th:block th:each="announcement, i : ${announcementsList}">
+                <div class="announcement-slide" th:id="'slide' + ${i.index}" >
+                    <h3 th:text="${announcement.subject}"></h3>
+                    <p th:text="${announcement.description}"></p>
+                    <a th:href="@{${announcement.link}}" th:target="_blank" th:text="${announcement.link}" class="externalLink"></a>
+                    <p class="color displayNone" th:id="${i.index}" th:text="${announcement.color}"></p>
+                    <a class="prev" th:id="${i.index}">&#10094;</a>
+                    <a class="next" th:id="${i.index}">&#10095;</a>
+                </div>
+            </th:block>
+        </div>
+        
+        <!-- Iterate announcement list and add nav dots -->
+        <div class="dots">
+            <th:block th:each="announcement, i : ${announcementsList}">
+                <span class="dot" th:id="'dot' + ${i.index}"></span>
+            </th:block>
+        </div>
+    <script type="text/javascript" th:src="@{js/displayAnnouncements.js}"></script>
+    </body>
+</html>
